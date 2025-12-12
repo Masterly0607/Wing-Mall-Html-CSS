@@ -1,0 +1,944 @@
+/* 1. Main Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --blue: #003595;
+  --main: #ffcc00;
+  --main-light: #ffe787;
+  --gray: #e9ecef;
+  --gray-light: #fafafa;
+  --gray-bold: #515c6f;
+  --red: #d22229;
+}
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* 2. Navbar Style*/
+.navbar {
+  color: #fff;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.navbar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar img {
+  width: 200px;
+}
+
+.navbar .main-menu-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-weight: 600;
+}
+
+.navbar .language-menu a {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .language-menu img {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+.navbar .main-menu-items a {
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+.navbar .main-menu-items li {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.navbar .main-menu-items li:not(:last-child):hover {
+  background-color: var(--main-light);
+  transition: background-color 0.3s ease;
+}
+
+.navbar i {
+  color: gray;
+  font-size: 1.3rem;
+}
+
+/* Mobile Menu  */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  display: none;
+}
+.navbar .mobile-menu-toggle {
+  cursor: pointer;
+}
+.mobile-menu-items {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100vh;
+  background-color: var(--main);
+  transform: translateX(100%); /* hidden by default */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+.navbar .mobile-menu-items.active {
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+}
+.mobile-menu-list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.mobile-menu-items a {
+  color: white;
+}
+.mobile-menu-list li:not(:last-child) a:hover {
+  color: var(--gray-bold);
+}
+.mobile-menu-list .language-menu {
+  border-top: 1px solid var(--gray);
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.mobile-menu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--blue);
+  padding: 1rem;
+  font-size: 1rem;
+}
+.mobile-menu-close {
+  color: white;
+  cursor: pointer;
+}
+.mobile-menu-close i {
+  font-size: 1rem;
+  color: white;
+}
+
+/* 3. Hero Styles*/
+
+.hero-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.hero-content {
+  flex: 1;
+}
+.hero-flex img {
+  flex: 1;
+  max-width: 500px;
+  height: auto;
+}
+.hero h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--main);
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: #000;
+  margin-bottom: 2rem;
+}
+.hero .btn {
+  background-color: var(--blue);
+  color: #fff;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 25px;
+}
+.hero .btn-toggle {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1rem;
+  background: var(--gray);
+  padding: 0.5rem 2rem;
+  border-radius: 30px;
+  font-size: 2rem;
+  width: fit-content;
+}
+.hero .btn-toggle {
+  color: var(--blue);
+  cursor: pointer;
+}
+.hero .btn-toggle .btn-toggle-text {
+  color: black;
+}
+
+/* Card Section Styles  */
+/* This replaces the old .promotion, .promotion-cards, .promotion-card system */
+.card-section {
+  padding: 6rem 0;
+  background-color: var(--gray-light);
+}
+
+.card-section .section-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+}
+
+.section-header h1 {
+  font-size: 3rem;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.section-header .view-all--top {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.section-header a:hover {
+  color: var(--main);
+}
+
+/* Grid of cards (used for Promotions & News) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Single card */
+.card-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.card-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.card-item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/* Card content */
+.card-content {
+  padding: 1rem;
+}
+.card-content h4 {
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.card-content p {
+  color: var(--gray-bold);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.card-content .btn a {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+/* shared button style */
+.view-all {
+  position: relative;
+  display: inline-block;
+  font-size: 1.2rem;
+  border: 2px solid var(--blue);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+  overflow: hidden;
+  transition: padding-right 0.3s ease; /* Makes the button expand smoothly on hover when we increase padding. */
+}
+/* ::after = lets you insert something inside an element, but after its content, WITHOUT changing your HTML. */
+.view-all::after {
+  content: "→";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+.view-all:hover {
+  color: var(--main);
+  padding-right: 2.5rem;
+}
+
+.view-all:hover::after {
+  opacity: 1;
+  right: 0.8rem;
+}
+
+/* Desktop / tablet: use top button, hide bottom */
+.view-all--bottom {
+  display: none;
+}
+
+.view-all-static {
+  font-size: 1.2rem;
+  border: 1px solid var(--blue);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-all-static i {
+  margin-left: 0.4rem; /* little gap before icon */
+}
+
+.view-all-static:hover {
+  opacity: 0.8;
+}
+
+/* Partner Slide Styles */
+.partners {
+  width: 100vw; /* full viewport width */
+  margin-left: 50%; /* break out of parent container */
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 3rem 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.partners-title {
+  font-size: 3rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.partners p {
+  font-size: 1.2rem;
+  color: black;
+  margin-bottom: 3rem;
+}
+
+/* each row */
+.partners-row {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 1.5rem;
+}
+
+/* logos line */
+.partners-track {
+  display: inline-flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.partners-track img {
+  height: 150px; /* tweak as you like */
+  width: auto;
+}
+
+/* Row 1: left -> right */
+.partners-row-1 .partners-track {
+  animation: scroll-right 10s linear infinite;
+}
+
+/* Row 2: right -> left */
+.partners-row-2 .partners-track {
+  animation: scroll-left 10s linear infinite;
+}
+
+/* pause animation on hover */
+.partners-row:hover .partners-track {
+  animation-play-state: paused;
+}
+
+/* keyframes */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* move left until second copy reaches start */
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0); /* move right until first copy reaches start */
+  }
+}
+/* Join Us Section */
+.join-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray-light);
+  padding: 6rem 0;
+}
+.join-section .join-text {
+  margin-bottom: 2rem;
+}
+.join-section h1 {
+  font-size: 3rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.join-section p {
+  font-size: 1.3rem;
+  color: #000;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.join-section .btn {
+  background-color: var(--blue);
+  color: white;
+  padding: 0.2rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 25px;
+  margin-top: auto; /* pushes the button to the bottom of the card */
+  display: inline-block;
+  width: fit-content;
+}
+.join-section .btn:hover {
+  color: var(--main);
+}
+.join-items {
+  margin-top: 4rem;
+  display: flex;
+  gap: 3rem;
+}
+.join-items .join-item {
+  flex: 1;
+  display: flex; /* make it a flex container */
+  flex-direction: column; /* stack image, title, text, button vertically */
+}
+.join-items .join-item h3 {
+  font-size: 1.2rem;
+  color: var(--blue);
+  margin: 1.3rem 0;
+  font-weight: 600;
+}
+.join-items .join-item p {
+  font-size: 1rem;
+  color: #000;
+  line-height: 1.5;
+  text-align: left;
+}
+.join-items .join-item img {
+  transition: transform 0.4s ease;
+}
+
+.join-items .join-item:hover img {
+  transform: scale(1.02);
+}
+
+/* Features Section */
+.features-section {
+  background-color: var(--main);
+  padding: 1.3rem 0;
+}
+.features-item {
+  display: flex;
+  gap: 2rem;
+}
+.feature-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--blue);
+}
+.feature-item h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+.feature-item p {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+.features-item img {
+  width: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+.features-item img:hover {
+  transform: scale(1.02);
+}
+.app-download-section {
+  padding: 3rem;
+}
+.app-download-section h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin: 4rem 0;
+}
+.app-download-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+.app-download-content .app-phone-image img {
+  max-width: 400px;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+.app-download-section .app-phone-image img:hover {
+  transform: scale(1.05);
+}
+.app-download-content h2 {
+  display: inline-block;
+  font-size: 3rem;
+  color: var(--main);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.app-stats {
+  text-align: center;
+}
+.app-download-content span {
+  display: inline-block;
+  color: var(--blue);
+  font-size: 1.2rem;
+  margin: 0.5rem;
+}
+.app-download-content p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: black;
+}
+.download-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.provinces-section {
+  background-color: var(--gray-light);
+}
+.provinces-section .province-title h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--blue);
+  padding: 5rem;
+}
+.provinces-section .provinces-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: 5rem;
+  gap: 1.5rem;
+}
+.provinces-section .province-item {
+  border-radius: 10px;
+  background-color: var(--main);
+}
+.provinces-section .province-item p {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--blue);
+}
+.provinces-section .province-item img {
+  border-radius: 10px 10px 0 0;
+  display: block;
+  width: 100%;
+}
+.province-img::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%; /* control how tall the fade is */
+  background: linear-gradient(
+    to top,
+    rgba(255, 204, 0, 0.45),
+    rgba(255, 204, 0, 0)
+  );
+  pointer-events: none;
+}
+.province-img {
+  position: relative;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden; /* important so overlay stays inside rounded corners */
+}
+.site-footer {
+  padding: 2rem;
+}
+.footer-flex ul li {
+  margin-bottom: 12px;
+  color: var(--blue);
+}
+.footer-flex ul li a {
+  color: var(--blue);
+  font-weight: 600;
+}
+.footer-flex ul li a:hover {
+  color: var(--main);
+}
+.footer-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.footer-cta h3 {
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+}
+.footer-bottom {
+  background: var(--blue);
+  color: white;
+}
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.footer-bottom-inner a {
+  color: white;
+  font-size: 1.2rem;
+}
+.footer-bottom-inner a:hover {
+  color: var(--main);
+}
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+.footer-bottom-inner img {
+  width: 90px;
+}
+@media (max-width: 767px) {
+  .partners-track img {
+    height: 60px;
+  }
+  .partners-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1025px) {
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  .navbar .container {
+    padding: 0 1rem;
+  }
+  .navbar img {
+    width: 100px;
+  }
+
+  .navbar .main-menu-list {
+    gap: 1rem;
+  }
+
+  .navbar .main-menu-items a {
+    font-size: 1rem;
+  }
+  .app-download-content {
+    flex-direction: row-reverse;
+  }
+  .app-download-content img {
+    max-width: 300px;
+  }
+
+  /* Hero */
+  .hero {
+    margin-top: 4rem;
+  }
+  .hero .hero-content {
+    margin-left: -1rem;
+  }
+  .hero img {
+    max-width: 500px;
+    margin-right: -3rem;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  /* Card Section (used for Promotions & News) */
+  .card-section {
+    margin-top: 6rem;
+  }
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .provinces-section .provinces-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile:*/
+@media (max-width: 767px) {
+  /* Navbar */
+  .main-menu-items {
+    display: none;
+  }
+  .navbar .mobile-menu {
+    display: block;
+  }
+  .navbar {
+    padding: 3px 0;
+    border-bottom: 2px solid var(--main);
+  }
+  .navbar img {
+    width: 100px;
+  }
+  .navbar .container {
+    padding: 0 7px;
+  }
+
+  /* Make content closer to the edges */
+  .container {
+    padding: 0 10px;
+  }
+
+  /* Hero */
+  .hero {
+    margin: 6rem 0;
+    padding: 0 1rem;
+  }
+
+  .hero-flex {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .hero-content {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero p {
+    font-size: 0.8rem;
+    margin-bottom: 1.25rem;
+  }
+  .hero .btn {
+    padding: 0.5rem 3rem;
+    font-size: 0.9rem;
+  }
+  .hero .btn-toggle {
+    display: none;
+  }
+
+  .hero-flex img {
+    width: 100%;
+    max-width: 380px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Card Section */
+
+  .card-section {
+    padding: 3rem 0;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+
+  .card-item {
+    align-items: center;
+  }
+  .card-item img {
+    width: 80%;
+  }
+
+  .section-header {
+    justify-content: flex-start; /* title only on the left */
+    padding: 1.5rem 0 0;
+  }
+
+  .view-all--top {
+    display: none;
+  }
+
+  .view-all-wrapper {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .view-all--bottom {
+    display: inline-block; /* show button under cards */
+  }
+
+  .card-section h1 {
+    font-size: 2rem;
+  }
+
+  .partners {
+    padding: 0 0.5rem;
+  }
+  .partners-title {
+    padding-top: 2.5rem;
+    font-size: 2rem;
+  }
+  .partners p {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  /* Join Section */
+  .join-section {
+    padding: 3rem 0;
+  }
+  .join-section .join-text {
+    padding: 0 1rem;
+  }
+  .join-section h1 {
+    font-size: 2rem;
+  }
+  .join-section p {
+    font-size: 1.2rem;
+  }
+  .join-items {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+  }
+  .join-items .join-item {
+    padding: 0 1rem;
+  }
+  .join-items h3 {
+  }
+  .features-item {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .feature-item img {
+    width: 60%;
+  }
+  .feature-item p {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .features-section {
+    padding: 2rem 0;
+  }
+
+  .app-download-title h1 {
+    font-size: 2rem;
+  }
+  .app-download-content {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+  .app-download-content img {
+    max-width: 100%;
+  }
+  .download-buttons {
+    display: none;
+  }
+  .provinces-section .provinces-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-flex {
+    flex-wrap: wrap;
+  }
+  .site-footer h3 {
+    margin-top: 1rem;
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 10px;
+  }
+}
